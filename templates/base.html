@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>
+			Txarliki
+		</title>
+
+		<link rel="stylesheet" href="/static/wiki.css" type="text/css">
+	</head>
+
+	<body>
+		<div id="top_bar">
+			<div class="user">
+				{% if user %}
+					{{user.username}} (<a href="/logout" class="top_link">logout</a>)
+				{% else %}
+					<a href="/login" class="top_link">login</a>
+					|
+					<a href="/signup" class="top_link">signup</a>
+				{% endif %}
+			</div>
+
+			<div class="history">
+				{% if user %}
+					{% if edit_page %}
+						<a href="{{post_path}}" class="top_link">edit</a>
+						|
+					{% else %}
+						<a href="/_edit{{post_path}}" class="top_link">edit</a>
+						|
+					{% endif %}
+				{% endif %}
+				<a href="/history" class="top_link">history</a>
+			</div>
+
+		</div>
+
+		<a href="/" class="main_title">Txarliki: TxarlitoUdacity wiki</a>
+		<br>
+		<div id="content">
+			{% block content %}
+			{% endblock %}
+		</div>
+
+	</body>
+</html>
